@@ -147,38 +147,61 @@ class GitRunner:
         else:
             if self.verbose:
                 print("ℹ️  لا يوجد requirements.txt - تخطي تثبيت المتطلبات")
-    
+                
     def detect_main_script(self) -> str:
-        """اكتشاف الملف الرئيسي تلقائياً"""
-        # قائمة بالأسماء الشائعة للملفات الرئيسية
-        common_scripts = [
-            'main.py', 'app.py', 'run.py', 'cli.py',
-            'index.py', 'script.py', 'start.py',
-            'setup.py', 'manage.py'
-        ]
-        
-        # تحقق من الملفات الشائعة
-        for script in common_scripts:
-            if self._fetch_file(script) is not None:
+    """اكتشاف الملف الرئيسي تلقائياً"""
+    # قائمة موسعة بالأسماء الشائعة
+    common_scripts = [
+        'main.py', 'app.py', 'run.py', 'cli.py',
+        'index.py', 'script.py', 'start.py',
+        'setup.py', 'manage.py', 'demo.py',  # أضفنا demo.py
+        '__main__.py'
+    ]
+    
+    # تحقق من الملفات الشائعة
+    for script in common_scripts:
+        if self._fetch_file(script) is not None:
+            if self.verbose:
+                print(f"🔍 عثرت على الملف الرئيسي: {script}")
+            return script
+    
+    # إذا لم نجد ملفاً شائعاً، نبحث عن أي ملف .py في المجلد الجذر
+    try:
+        if self.platform == 'github':
+            api_url = f'https://api.github.com/repos/{self.owner}/{self.repo}/contents?ref={self.branch}'
+            response = requests.get(api_url, timeout=10)
+            if response.status_code == 200:
+                files = response.json()
+                # ترتيب الملفات: أولاً .py في الجذر، ثم في المجلدات
+                py_files = []
+                for f in files:
+                    if f['name'].endswith('.py'):
+                        if '/' not in f['path']:  # ملفات في الجذر أولاً
+                            py_files.insert(0, f['name'])
+                        else:
+                            py_files.append(f['name'])
+                
+                if py_files:
+                    if self.verbose:
+                        print(f"🔍 وجدت ملفات بايثون: {py_files[:3]}...")
+                    return py_files[0]
+    except Exception as e:
+        if self.verbose:
+            print(f"⚠️  خطأ في البحث عبر API: {e}")
+    
+    # البحث في مجلدات معروفة
+    for folder in ['src', 'app', 'project', 'micrograd']:
+        for script_name in ['__init__.py', 'main.py']:
+            potential_path = f"{folder}/{script_name}"
+            if self._fetch_file(potential_path) is not None:
                 if self.verbose:
-                    print(f"🔍 عثرت على الملف الرئيسي: {script}")
-                return script
-        
-        # إذا لم نجد، نبحث عن أي ملف .py
-        try:
-            if self.platform == 'github':
-                api_url = f'https://api.github.com/repos/{self.owner}/{self.repo}/contents?ref={self.branch}'
-                response = requests.get(api_url, timeout=10)
-                if response.status_code == 200:
-                    files = response.json()
-                    py_files = [f['name'] for f in files if f['name'].endswith('.py')]
-                    if py_files:
-                        return py_files[0]
-        except Exception:
-            pass
-        
-        # الافتراضي
-        return 'main.py'
+                    print(f"🔍 عثرت على الملف في مجلد: {potential_path}")
+                return potential_path
+    
+    # الافتراضي - ولكن هذه المرة مع رسالة أفضل
+    if self.verbose:
+        print("⚠️  لم أجد ملفاً رئيسياً واضحاً، جرب تحديده يدوياً باستخدام --script")
+    return 'main.py'
     
     def run_script(self, python_path: str, user_args: List[str] = None):
         """تنزيل وتشغيل السكربت"""
