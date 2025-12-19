@@ -43,7 +43,7 @@ With isolated virtual environments, smart branch/file detection, and automatic c
 > شاهد كيف يقوم gitrun بتشغيل مشروع micrograd لـ Andrej Karpathy فورًا — بدون clone أو إعدادات يدوية!!
 
 > Watch how gitrun automatically opens the `demo.ipynb` notebook from Karpathy's micrograd project in Jupyter Lab in under 10 seconds — no manual cloning or setup required!
-📦 التثبيت / Installation
+📦📦 التثبيت / Installation
 المفضل (مع عزل كامل):
 Bashpipx install gitrun
 ملاحظة: ننصح باستخدام pipx للتثبيت العالمي المعزول.
