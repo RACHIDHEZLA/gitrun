@@ -4,18 +4,27 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gitrun"
-version = "0.1.0"
-description = "Run Python scripts directly from GitHub/GitLab without cloning - with isolated virtual environments"
+version = "0.2.0"  # إصدار جديد كبير بسبب دعم Jupyter واكتشاف الفرع التلقائي
+description = "Run Python scripts and Jupyter notebooks directly from GitHub/GitLab without cloning – with isolated virtual environments"
+long_description = {file = "README.md"}
+long_description_content_type = "text/markdown"
 readme = "README.md"
 authors = [
-    {name = "RACHIDHEZLA", email = "your.email@example.com"}
+    {name = "RACHIDHEZLA", email = "rachid470@gmail.com"}  
 ]
 license = {text = "MIT"}
-keywords = ["github", "gitlab", "runner", "python", "script", "virtualenv", "remote"]
+keywords = [
+    "github", "gitlab", "python", "script", "runner",
+    "jupyter", "notebook", "virtualenv", "remote", "execute",
+    "karpathy", "micrograd", "nanogpt"
+]
 classifiers = [
-    "Development Status :: 4 - Beta",
+    "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
-    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Intended Audience :: Education",
+    "Intended Audience :: Science/Research",
+    "Topic :: Software Development",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.8",
@@ -24,21 +33,34 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Operating System :: OS Independent",
+    "Environment :: Console",
 ]
+requires-python = ">=3.8"
 dependencies = [
     "requests>=2.25.0",
 ]
-requires-python = ">=3.8"
 
 [project.scripts]
-gitrun = "gitrun.cli:main"
+gitrun = "gitrun.cli:main"  
 
 [project.urls]
 Homepage = "https://github.com/RACHIDHEZLA/gitrun"
 Documentation = "https://github.com/RACHIDHEZLA/gitrun#readme"
 Repository = "https://github.com/RACHIDHEZLA/gitrun"
-Changelog = "https://github.com/RACHIDHEZLA/gitrun/releases"
 Issues = "https://github.com/RACHIDHEZLA/gitrun/issues"
+Changelog = "https://github.com/RACHIDHEZLA/gitrun/releases"
+
+[project.optional-dependencies]
+# Dependencies for development and testing
+dev = [
+    "pytest>=7.0.0",
+    "black>=23.0.0",
+    "flake8>=6.0.0",
+]
+# Optional: for running Jupyter notebooks (installed automatically when needed)
+notebook = [
+    "jupyterlab>=4.0.0",
+]
 
 [tool.setuptools.packages.find]
 where = ["."]
@@ -46,10 +68,3 @@ include = ["gitrun*"]
 
 [tool.setuptools.package-data]
 "gitrun" = ["py.typed"]
-
-[project.optional-dependencies]
-dev = [
-    "pytest>=7.0.0",
-    "black>=23.0.0",
-    "flake8>=6.0.0",
-]
