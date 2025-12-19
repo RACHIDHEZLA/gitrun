@@ -43,50 +43,35 @@ With isolated virtual environments, smart branch/file detection, and automatic c
 > شاهد كيف يقوم gitrun بتشغيل مشروع micrograd لـ Andrej Karpathy فورًا — بدون clone أو إعدادات يدوية!!
 
 > Watch how gitrun automatically opens the `demo.ipynb` notebook from Karpathy's micrograd project in Jupyter Lab in under 10 seconds — no manual cloning or setup required!
-
-
-## 📦 التثبيت / Installation
-
-```bash
-pipx install gitrun
-ملاحظة: ننصح باستخدام pipx للعزل الكامل
-Recommended: Use pipx for global isolated installation
-أو بـ pip عادي:
+📦 التثبيت / Installation
+المفضل (مع عزل كامل):
+Bashpipx install gitrun
+ملاحظة: ننصح باستخدام pipx للتثبيت العالمي المعزول.
+Recommended: Use pipx for global isolated installation.
+بديل (باستخدام pip عادي):
 Bashpip install gitrun
-
 🚀 أمثلة استخدام / Usage Examples
-1. تشغيل micrograd (المشروع الأشهر لـ Andrej Karpathy)
-Bashgitrun https://github.com/karpathy/micrograd
-→ يفتح demo.ipynb تلقائيًا في Jupyter Lab داخل المتصفح!
-2. تشغيل nanoGPT
-Bashgitrun https://github.com/karpathy/nanoGPT
-→ يشغل train.py تلقائيًا
-3. تشغيل ملف محدد
-Bashgitrun https://github.com/user/repo --script app.py
-4. تمرير arguments للسكربت
-Bashgitrun https://github.com/user/repo train.py --epochs 10 --batch_size 32
-5. وضع التفاصيل (verbose)
-Bashgitrun https://github.com/karpathy/llm.c -v
-6. تشغيل بدون بيئة افتراضية
-Bashgitrun https://github.com/user/repo --no-venv
 
-
+تشغيل micrograd (المشروع الأشهر لـ Andrej Karpathy)Bashgitrun https://github.com/karpathy/micrograd→ يفتح demo.ipynb تلقائيًا في Jupyter Lab داخل المتصفح!
+تشغيل nanoGPTBashgitrun https://github.com/karpathy/nanoGPT→ يشغل train.py تلقائيًا
+تشغيل ملف محددBashgitrun https://github.com/user/repo --script app.py
+تمرير arguments للسكربتBashgitrun https://github.com/user/repo train.py --epochs 10 --batch_size 32
+وضع التفاصيل (verbose)Bashgitrun https://github.com/karpathy/llm.c -v
+تشغيل بدون بيئة افتراضيةBashgitrun https://github.com/user/repo --no-venv
 
 🤝 المساهمة / Contributing
 مرحب بكل المساهمات!
 Contributions are welcome!
 
 Fork المشروع
-أنشئ فرع جديد (git checkout -b feature/amazing)
-اعمل commit (git commit -m 'Add amazing feature')
-Push الفرع (git push origin feature/amazing)
+أنشئ فرع جديدBashgit checkout -b feature/amazing
+اعمل commitBashgit commit -m 'Add amazing feature'
+Push الفرعBashgit push origin feature/amazing
 افتح Pull Request
 
-
 📄 الترخيص / License
-مشروع مفتوح المصدر تحت رخصة MIT
+مشروع مفتوح المصدر تحت رخصة MIT.
 Open source under the MIT License - see LICENSE for details.
-
 ⭐ دعم المشروع
 إذا أعجبك gitrun:
 
@@ -96,4 +81,3 @@ Open source under the MIT License - see LICENSE for details.
 
 شكرًا لاستخدامك gitrun!
 Made with ❤️ by RACHIDHEZLA
-```
