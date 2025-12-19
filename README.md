@@ -36,10 +36,11 @@ With isolated virtual environments, smart branch/file detection, and automatic c
 
 ---
 ## 🎥 ديمو سريع / Quick Demo
+[![ديمو gitrun مع micrograd - افتح demo.ipynb تلقائيًا في Jupyter Lab](https://img.youtube.com/vi/aULGRDQP-iI/maxresdefault.jpg)](https://www.youtube.com/watch?v=aULGRDQP-iI)
 
-[![شاهد ديمو gitrun مع micrograd](https://img.youtube.com/vi/abcdefg1234/maxresdefault.jpg)]([https://www.youtube.com/watch?v=abcdefg1234](https://youtu.be/aULGRDQP-iI))
-
-> شاهد كيف يقوم gitrun بفتح دفتر `demo.ipynb` من مشروع micrograd تلقائيًا في Jupyter Lab في أقل من 10 ثواني — بدون أي تنزيل يدوي أو إعدادات!
+> اضغط على الصورة لمشاهدة الديمو الكامل على YouTube (أقل من دقيقة!)
+>
+> شاهد كيف يقوم gitrun بتشغيل مشروع micrograd لـ Andrej Karpathy فورًا — بدون clone أو إعدادات يدوية!!
 
 > Watch how gitrun automatically opens the `demo.ipynb` notebook from Karpathy's micrograd project in Jupyter Lab in under 10 seconds — no manual cloning or setup required!
 
